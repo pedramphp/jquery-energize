@@ -1,2 +1,2 @@
-jquery-widget
-=============
+jquery-energize
+===============

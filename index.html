@@ -1,0 +1,35 @@
+<!doctype>
+<html>
+	<head>
+		<style type="text/javascript">
+		.color{
+			height: 100px;
+			width:	100px;
+		}
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="jquery.energize.js"></script>
+		<script src="jquery.colorify.js"></script> 
+	</head>
+
+	<body>
+		<div>
+			<div class="color" data-colorify-color="red">red</div>
+			<div>first</div>
+			<div class="color" data-colorify-color="blue">blue</div>
+			<div>first</div>
+			<div class="color">pink</div>
+
+		</div>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			//$.fn.colorify.noConflict();
+			$(".color").colorify();
+			
+			$(".color").colorify("getColor", function(){
+				console.log(arguments);
+			});
+		});
+		</script>
+	</body>
+</html>
