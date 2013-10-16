@@ -3,17 +3,14 @@
 	"use strict";
 
 	function Colorify(element, config){
-		$(element).css("color", config.color);
-
-		this.getColor = function(){
-			return "color";
-		};
-
+		this.config = config;
+		$(element).css("color", this.config.color);
 		return this;
 	}
 
+	//shared methods
 	Colorify.prototype.getColor = function(){
-		return "color";
+		return this.config.color;
 	};
 
 	$.energize("colorify", Colorify, {

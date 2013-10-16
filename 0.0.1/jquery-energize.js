@@ -1,5 +1,5 @@
 /* ===========================================================
- * jquery-energize.js v0.1
+ * jquery-energize.js v0.0.1
  * 
  * Developed by Mahdi Pedramrazi
  * ========================================================== */
@@ -17,29 +17,29 @@
 				DATA_ATTR = "jquery-energize-" + compName;
 		
 			this.each(function(){
-				
 				var $el = $(this),
 					widgetInstance = $el.data(DATA_ATTR),
 					key,
 					callbackFunc,
 					methodResponse,
 					methodName,
-					lastParam;
-
+					lastParam,
+					params = $.extend(true, [],  args);
 
 				// if the first parameter is a string and the widget has been initiated yet then.
 				if((typeof config === "string" || config instanceof String) && (widgetInstance instanceof Comp)){
+
 					methodName = config;
 					// method calls	supports optional parameters
-					args.shift();
-					lastParam = args[args.length-1];
+					params.shift();
+					lastParam = params[params.length-1];
 					if($.isFunction(lastParam)){
 						callbackFunc = lastParam;
-						args.pop();
+						params.pop();
 					}
 					// if the method exists then trigger it and pass the arguments.
-					if(widgetInstance.hasOwnProperty(methodName)){
-						methodResponse = widgetInstance[methodName].apply(widgetInstance, args);
+					if(widgetInstance[methodName]){
+						methodResponse = widgetInstance[methodName].apply(widgetInstance, params);
 						// if there is any callback function trigger it.
 						callbackFunc && callbackFunc.call(widgetInstance, methodResponse);
 					}

@@ -1,33 +1,35 @@
 <!doctype>
 <html>
 	<head>
-		<style type="text/javascript">
+		<style type="text/css">
 		.color{
-			height: 100px;
-			width:	100px;
+			height: 50px;
+			width:	50px;
+			display: block;
+			text-align: center;
+			line-height: 50px;
+			font-size: 23px;
 		}
 		</style>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="jquery.energize.js"></script>
+		<script src="../../0.0.1/jquery-energize.js"></script>
 		<script src="jquery.colorify.js"></script> 
 	</head>
 
 	<body>
 		<div>
 			<div class="color" data-colorify-color="red">red</div>
-			<div>first</div>
 			<div class="color" data-colorify-color="blue">blue</div>
-			<div>first</div>
-			<div class="color">pink</div>
-
+			<div class="color">Default</div>
 		</div>
+
 		<script type="text/javascript">
 		$(document).ready(function(){
 			//$.fn.colorify.noConflict();
 			$(".color").colorify();
 			
-			$(".color").colorify("getColor", function(){
-				console.log(arguments);
+			$(".color").colorify("getColor", function(color){
+				console.log(color, " is back");
 			});
 		});
 		</script>
