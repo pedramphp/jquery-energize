@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>jQuery Energize by pedramphp</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>jQuery Energize</h1>
+        <h2>jQuery Energize it is a jQuery plugin that will help javascript engineers to easily create UI Components on top of jQuery.</h2>
+        <a href="https://github.com/pedramphp/jquery-energize" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
+<a name="welcome-to-jquery-energize" class="anchor" href="#welcome-to-jquery-energize"><span class="octicon octicon-link"></span></a>Welcome to jQuery Energize.</h3>
+
+<p>jQuery Energize is a javascript component built on top of jQuery library to easily create smart extensible UI Components.</p>
+
+<blockquote>
+<p>jQuery Energize delivers expandable, reusable, simple UI Components Built on top of jQuery Library by using the DOM API.</p>
+</blockquote>
+
+<h3>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
+
+<ul>
+<li>Support Data attribute to overwrite config parameters</li>
+<li>Easily expose public methods for your component.</li>
+<li>Avoiding overwriting existing components by using noConflict</li>
+<li>Supporting Javascript OOP principles by using prototypes.</li>
+<li>More importantly provides code consistency, simplicity and faster execution for writing UI Components.</li>
+</ul><h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>Insert the following script in the body tag</p>
+
+<pre><code>&lt;script type="text/javascript" src="jquery-energize.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h3>
+<a name="how-to-write-a-component" class="anchor" href="#how-to-write-a-component"><span class="octicon octicon-link"></span></a>How to write a component</h3>
+
+<pre><code>/* jshint expr: true */
+(function($){
+    "use strict";
+
+    /**
+     * @constructor
+     * @param {html-object/tag} element: selected DOM element
+     * @param {obj literal} config: merge of data attributes, component options, component settings
+     * @return {Comp obj}
+     */
+    function Comp(element, config){
+        /* ALL YOUR CODE GOES HERE*/
+        return this;
+    }
+
+    $.energize("comp_name", Comp, {
+        /* Component Settings */
+    });
+
+})(window.jQuery);
+</code></pre>
+
+<h3>
+<a name="how-to-initialize-a-component" class="anchor" href="#how-to-initialize-a-component"><span class="octicon octicon-link"></span></a>How to initialize a component</h3>
+
+<p>you can use jQuery DOM selector to query the dom and call your new component, you can also pass optional configuration object just like any jQuery Plugin</p>
+
+<pre><code> $(el).comp_name({
+        /* component options */
+ });
+</code></pre>
+
+<h3>
+<a name="duplicate-component-names" class="anchor" href="#duplicate-component-names"><span class="octicon octicon-link"></span></a>Duplicate component names</h3>
+
+<p>if there are different components with the same name on your page you can always fallback to the old version by using no conflict</p>
+
+<pre><code> $.fn.comp_name.noConflict();
+ $(el).comp_name({
+        /* component options */
+ });
+</code></pre>
+
+<h3>
+<a name="sample-component" class="anchor" href="#sample-component"><span class="octicon octicon-link"></span></a>Sample component</h3>
+
+<p>Writing a jquery plugin that will change the color of DOM elements. </p>
+
+<h4>
+<a name="js-file---jquerycolorifyjs-component" class="anchor" href="#js-file---jquerycolorifyjs-component"><span class="octicon octicon-link"></span></a>JS File - jQuery.colorify.js component</h4>
+
+<pre><code>/* jshint expr: true */
+(function($){
+    "use strict";
+
+    function Colorify(element, config){
+        this.config = config;
+        $(element).css("color", this.config.color);
+        return this;
+    }
+
+    //shared public method
+    Colorify.prototype.getColor = function(){
+        return this.config.color;
+    };
+
+    $.energize("colorify", Colorify, {
+        color: "pink" //default color - if there is no color specified.
+    });
+
+})(window.jQuery);
+</code></pre>
+
+<h4>
+<a name="html-file" class="anchor" href="#html-file"><span class="octicon octicon-link"></span></a>HTML File</h4>
+
+<p>we have used data attribute for configurations, you can always override it by passing option parameters to your component.</p>
+
+<pre><code>&lt;!doctype&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;style type="text/css"&gt;
+        .color{
+            height: 50px;
+            width:  50px;
+            display: block;
+            text-align: center;
+            line-height: 50px;
+            font-size: 23px;
+        }
+        &lt;/style&gt;
+        &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+        &lt;script src="../../0.0.1/jquery-energize.js"&gt;&lt;/script&gt;
+        &lt;script src="jquery.colorify.js"&gt;&lt;/script&gt; 
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;div&gt;
+            &lt;div class="color" data-colorify-color="red"&gt;red&lt;/div&gt;
+            &lt;div class="color" data-colorify-color="blue"&gt;blue&lt;/div&gt;
+            &lt;div class="color"&gt;Default is pink&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;script type="text/javascript"&gt;
+        $(document).ready(function(){
+            //$.fn.colorify.noConflict();
+            $(".color").colorify();
+
+            $(".color").colorify("getColor", function(color){
+                console.log(color, " is back");
+            });
+        });
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/pedramphp/jquery-energize/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/pedramphp/jquery-energize/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/pedramphp/jquery-energize"></a> is maintained by <a href="https://github.com/pedramphp">pedramphp</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
