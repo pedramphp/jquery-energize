@@ -1,0 +1,29 @@
+{
+  "name": "jquery-energize",
+  "version": "1.0.0",
+  "homepage": "https://github.com/pedramphp/jquery-energize",
+  "authors": [
+    "Mahdi Pedramrazi <pedramphp@gmail.com>"
+  ],
+  "description": "jQuery Energize is a javascript component built on top of jQuery library to easily create smart extensible UI Components.",
+  "main": "1.0.0//jquery-energize.js",
+  "keywords": [
+    "jQuery",
+    "jQuery",
+    "energize",
+    "jQuery",
+    "component",
+    "builder",
+    "jQuery",
+    "plugin",
+    "builder"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
